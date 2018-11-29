@@ -11,48 +11,34 @@ it should be able to scale a molehill or Mount Everest.
 import "turns";
 
 function SolveChallenge(){
-	while(frontIsClear()){
-    move();
-  }
-	repeat(2){
-    checkObject();
-  }
-}
-
-function checkObject(){
-	turnLeft();
 	move();
-	while(rightIsClear()){
-		climbMountain();
-		descend();
-		if(frontIsClear()){
-      move();
-    }
+	while(beepersInBag()){
+		tackleMountain();
 	}
 }
 
-function climbMountain(){
-	turnRight();
-	move();
+
+function tackleMountain(){
+	climb();
+	putBeeper();
+	descend();
+}
+
+function climb(){
 	while(frontIsBlocked()){
 		turnLeft();
-		move();
+		if(frontIsClear()){move();}
 		turnRight();
 		move();
 	}
-	putBeeper();
 }
 
 function descend(){
+	while(frontIsClear()){
 	move();
 	turnRight();
-	while(frontIsClear()){
+	if(frontIsClear()){
 		move();
-		turnLeft();
-		if(frontIsClear()){
-			move();
-			turnRight();
-		}
-	}
-	turnLeft();
+		turnLeft();}}
+	if(facingSouth()){turnLeft();}
 }
